@@ -21,7 +21,9 @@ student-management-system/
 │   ├── StudentService.java # Validation layer
 │   └── DatabaseManager.java# SQLite CRUD operations
 ├── lib/
-│   └── sqlite-jdbc.jar     # SQLite JDBC driver
+│   ├── sqlite-jdbc.jar     # SQLite JDBC driver
+│   ├── slf4j-api.jar       # SLF4J API (required by sqlite-jdbc)
+│   └── slf4j-simple.jar    # SLF4J implementation
 └── README.md
 ```
 
@@ -30,16 +32,16 @@ student-management-system/
 ### 1. Compile
 ```bash
 mkdir -p out
-javac -cp lib/sqlite-jdbc.jar src/*.java -d out
+javac -cp "lib/sqlite-jdbc.jar:lib/slf4j-api.jar" src/*.java -d out
 ```
 
 ### 2. Run
 ```bash
 # macOS / Linux
-java -cp out:lib/sqlite-jdbc.jar Main
+java -cp "out:lib/sqlite-jdbc.jar:lib/slf4j-api.jar:lib/slf4j-simple.jar" Main
 
 # Windows
-java -cp "out;lib/sqlite-jdbc.jar" Main
+java -cp "out;lib/sqlite-jdbc.jar;lib/slf4j-api.jar;lib/slf4j-simple.jar" Main
 ```
 
 ## Sample Output

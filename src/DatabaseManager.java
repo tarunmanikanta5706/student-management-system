@@ -11,7 +11,18 @@ public class DatabaseManager {
     private static final String DB_URL = "jdbc:sqlite:students.db";
 
     public DatabaseManager() {
+        loadDriver();
         initializeDatabase();
+    }
+
+    /** Explicitly load the SQLite JDBC driver (required for Java 9+). */
+    private void loadDriver() {
+        try {
+            Class.forName("org.sqlite.JDBC");
+        } catch (ClassNotFoundException e) {
+            System.err.println("SQLite JDBC driver not found. Ensure lib/sqlite-jdbc.jar is in the classpath.");
+            System.exit(1);
+        }
     }
 
     /** Create the students table if it doesn't exist. */
