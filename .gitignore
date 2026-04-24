@@ -1,0 +1,4 @@
+out/
+students.db
+*.class
+.DS_Store
